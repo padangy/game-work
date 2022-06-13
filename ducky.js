@@ -40,7 +40,7 @@ window.onload = function () {
   //    a "function" called createDuck() that does everything in 1-4
   //    and "returns" the duck object
   function createDuck() {
-    const duck = document.createElement('DIV');
+    const duck = document.createElement('div');
     duck.className = 'duck';
     document.body.appendChild(duck);
 
@@ -52,7 +52,7 @@ window.onload = function () {
       duck.style.top = `${y}px`;
       duck.style.left = `${x}px`;
     }
-    setInterval(() => {moveDuck()}, 1000);
+    // setInterval(() => {moveDuck()}, 1000);
     return duck;
   }
 
@@ -77,28 +77,41 @@ window.onload = function () {
   // 11. BOOM. Attach a "click" handler that adds the "shot" class to
   //     the duck when you click on it!
 
-  duck.addEventListener('click', (event) => {
-    event.target.classList.add('shot');
-    setTimeout (() => {
-      duck.parentNode.removeChild('duck');
+
+
+function checkForWinner() {
+
+  if(element === 0) {
+      alert('YOU WIN!');
+  }
+};
+
+const ducks = document.querySelectorAll('.duck').forEach(element => {
+
+  element.addEventListener('click', () => {
+
+    element.className = 'duck shot';
+
+      setTimeout(() => {document.body.removeChild(element)}, 1000);
+     
+
       checkForWinner();
-    }, 1000)
-});  
+      
+  })
+
+});
+
 
   // 12. After a duck has been clicked on, remove it from the DOM after
   //     a short delay (1 second) Hint Hint...use setTimeout
   //     as for removing the element check out https://dzone.com/articles/removing-element-plain
 
+  // setTimeout(() => {document.body.removeChild(element)}, 1000);
+
 
   // 13. Create a new function named checkForWinner() that reads the DOM
   //     to see if there are any ducks left. (How can we check the DOM for more than one element?, and how can we see how many elements we get back) If not, alert "YOU WIN!"
-  function checkForWinner() {
-    const ducks = document.querySelectorAll('.duck');
 
-    if(ducks.length === 0) {
-      alert('YOU WIN!');
-    }
-  }
 
   // 14. BONUS: The ducks are moving pretty erratically, can you think
   //     of a way to adjust the ducks speed based on how far needs to move?
