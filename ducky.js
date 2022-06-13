@@ -52,8 +52,8 @@ window.onload = function () {
       duck.style.top = `${y}px`;
       duck.style.left = `${x}px`;
     }
-    // setInterval(() => {moveDuck()}, 1000);
-    return duck;
+    setInterval(() => {moveDuck()}, 1000);
+  
   }
 
   
@@ -78,27 +78,19 @@ window.onload = function () {
   //     the duck when you click on it!
 
 
-
-function checkForWinner() {
-
-  if(element === 0) {
-      alert('YOU WIN!');
-  }
-};
-
-const ducks = document.querySelectorAll('.duck').forEach(element => {
+document.querySelectorAll('.duck').forEach(element => {
 
   element.addEventListener('click', () => {
 
     element.className = 'duck shot';
 
       setTimeout(() => {document.body.removeChild(element)}, 1000);
-     
-
+      
       checkForWinner();
       
+      
   })
-
+  
 });
 
 
@@ -112,6 +104,13 @@ const ducks = document.querySelectorAll('.duck').forEach(element => {
   // 13. Create a new function named checkForWinner() that reads the DOM
   //     to see if there are any ducks left. (How can we check the DOM for more than one element?, and how can we see how many elements we get back) If not, alert "YOU WIN!"
 
+  function checkForWinner() {
+
+    if(document.querySelectorAll('.duck').length-1 === 0) {
+      alert('YOU WIN!');
+    }
+    
+  };
 
   // 14. BONUS: The ducks are moving pretty erratically, can you think
   //     of a way to adjust the ducks speed based on how far needs to move?
